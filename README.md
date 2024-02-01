@@ -1,40 +1,83 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Watch With Me
+
+Watch With Me is a web application that allows users to search for movies and view details about them. It is built using ASP.NET Core for the backend and Next.js for the frontend.
+
+## Features
+
+- Movie search by title
+- Saving 5 latest search queries
+- Showing search results
+- Show extended movie information when a particular movie is selected (poster, description, IMDB score, etc.)
+
+## Technologies Used
+
+- **Backend:**
+  - ASP.NET Core
+  - Entity Framework Core (InMemory Database)
+  - OMDB API for movie data
+
+- **Frontend:**
+  - Next.js
+  - Tailwind CSS
+
+- **Testing:**
+  - Jest for frontend unit tests
+  - xUnit for backend unit tests
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- .NET Core SDK
+- Node.js and npm
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+1. Clone the repository:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+   ```bash
+   git clone https://github.com/freddymuleya16/WatchWithMe.git
+   cd WatchWithMe
+   ```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+2. Set up the backend:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+   cd WatchWithMeAPI
+   dotnet restore
+   dotnet run
+   ```
 
-## Learn More
+   The backend will be running on `https://localhost:7098`.
 
-To learn more about Next.js, take a look at the following resources:
+3. Set up the frontend:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   cd watchwithme
+   npm install
+   npm run dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   The frontend will be running on `http://localhost:3000`.
 
-## Deploy on Vercel
+4. Open your web browser and navigate to `http://localhost:3000` to access the application.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **WatchWithMeAPI:** Contains the ASP.NET Core backend.
+- **WatchWithMeFrontend:** Contains the Next.js frontend.
+
+## API Endpoints
+
+- `GET /api/movie/search?title={title}`: Search for movies by title.
+- `GET /api/movie/{imdbId}`: Get details for a specific movie by IMDB ID.
+- `GET /api/movie/history`: Get the 5 latest search queries.
+
+## Additional Notes
+
+- Ensure that CORS is configured on the backend to allow requests from the frontend.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+ 
