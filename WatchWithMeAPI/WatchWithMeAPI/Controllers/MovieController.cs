@@ -10,12 +10,17 @@ namespace WatchWithMeAPI.Controllers
     public class MovieController : ControllerBase
     {
         private readonly AppDbContext _dbContext;
-        private readonly string omdbApiKey = "f1beb719";  
+        private readonly string omdbApiKey;  
 
-        public MovieController(AppDbContext dbContext)
+        //get api key from appsettings.json
+        public MovieController(AppDbContext dbContext, string apiKey)
         {
             _dbContext = dbContext;
+            omdbApiKey = apiKey;
+
         }
+
+       
 
         [HttpGet("search")]
         public async Task<IActionResult> SearchMovie(string title)

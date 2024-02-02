@@ -9,14 +9,13 @@ import Link from "next/link";
 export default function Home() {
   const [title, setTitle] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const [searchHistory, setSearchHistory] = useState([]);
-  const apiUrl = 'https://localhost:7098/api/Movie';
+  const [searchHistory, setSearchHistory] = useState([]); 
   const [isLoading, setIsLoading] = useState(false);
-
+ 
   const searchMovie = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`${apiUrl}/search?title=${title}`);
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_ENDPOINT}/search?title=${title}`);
       const data = response.data;
       setSearchResults([...data.Search]);
     } catch (error) {
@@ -31,7 +30,7 @@ export default function Home() {
     try {
       setIsLoading(true);
       setTitle(name)
-      const response = await axios.get(`${apiUrl}/search?title=${name}`);
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_ENDPOINT}/search?title=${name}`);
       const data = response.data;
       setSearchResults([...data.Search]);
     } catch (error) {
@@ -49,7 +48,7 @@ export default function Home() {
   useEffect(() => {
     const getHistory = async () => {
       try {
-        const response = await axios.get(`${apiUrl}/history`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_ENDPOINT}/history`);
         const data = response.data;
         setSearchHistory(data);
       } catch (error) {

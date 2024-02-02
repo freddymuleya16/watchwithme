@@ -15,7 +15,7 @@ namespace WatchWithMeAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddDbContext<AppDbContext>(options =>    options.UseInMemoryDatabase("InMemoryDatabase"));
+            builder.Services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("InMemoryDatabase"));
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowOrigin",
@@ -23,6 +23,11 @@ namespace WatchWithMeAPI
                                       .AllowAnyHeader()
                                       .AllowAnyMethod());
             });
+
+            //Get api key from appsettings.json and inject it into the controller
+            var apiKey = builder.Configuration.GetSection("OmdbApiKey").Value;
+            builder.Services.AddSingleton(apiKey);
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
