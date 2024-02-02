@@ -20,10 +20,6 @@ Watch With Me is a web application that allows users to search for movies and vi
   - Next.js
   - Tailwind CSS
 
-- **Testing:**
-  - Jest for frontend unit tests
-  - xUnit for backend unit tests
-
 ## Getting Started
 
 ### Prerequisites
